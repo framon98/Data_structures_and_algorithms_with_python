@@ -125,6 +125,15 @@ class DrawingApplication(tkinter.Frame):
                 if command == "GoTo":
                     x = float(attr["x"].value)
                     y = float(attr["y"].value)
+                    width = float(attr["width"].value)
+                    color = attr["color"].value.strip()
+                    cmd = GoToCommand(x, y, width, color)
+
+                elif command == "Circle":
+                    radius = float(attr["radius"].value)
+                    width = float(attr["width"].value)
+                    color = attr["color"].value.strip()
+                    cmd = CircleCommand(radius, width, color)
 
 
 def main():
