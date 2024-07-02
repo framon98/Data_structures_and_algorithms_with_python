@@ -204,8 +204,18 @@ class DrawingApplication(tkinter.Frame):
 
                 file.write('</GraphicsCommands>\n')
 
-                fie.close()
+                file.close()
+            
+            def saveFile():
+                filename = tkinter.filedialog.asksaveasfilename(title="Save Pciture As...")
+                write(filename)
 
+            fileMenu.add_command(label="Save As...", command=saveFile)
+
+            fileMenu.add_command(label="Exit", command=self.master.quit)
+
+            bar.add_cascade(label="File", menu=fileMenu)
+            
 
 
 def main():
