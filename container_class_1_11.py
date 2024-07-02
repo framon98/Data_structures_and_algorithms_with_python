@@ -92,7 +92,7 @@ class DrawingApplication(tkinter.Frame):
         # The same aplies for the loadFile, addtofile, and savefile below. 
         # The exit menu item below callsquit on the master or root window
         def newWindow():
-
+            pass
 
 def main():
     filename = input("Please enter drawing filename: ")
