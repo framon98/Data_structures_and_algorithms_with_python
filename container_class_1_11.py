@@ -243,6 +243,22 @@ class DrawingApplication(tkinter.Frame):
             pointLabel = tkinter.Label(sideBar, text="Width")
             pointLabel.pack()
 
+            # This netry allows user to pick width for the lines. This variable widthSize 
+            # can be used to get and set the value od the drawing line
+            widthSize = tkinter.StringVar()
+            widthEntry = tkinter.Entry(sideBar, textvariable=widthSize)
+
+            widthEntry.pack()
+            widthSize.set(str(1))
+
+            radiusLabel = tkinter.Label(sideBar, text="Radius")
+            radiusLabel.pack()
+            radiusSize = tkinter.StringVar()
+            radiusEntry = tkinter.Entry(sideBar, textvariable=radiusSize)
+            radiusSize.set(str(10))
+            radiusEntry.pack()
+
+
 
 def main():
     filename = input("Please enter drawing filename: ")
