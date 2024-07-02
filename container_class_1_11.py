@@ -92,7 +92,22 @@ class DrawingApplication(tkinter.Frame):
         # The same aplies for the loadFile, addtofile, and savefile below. 
         # The exit menu item below callsquit on the master or root window
         def newWindow():
-            pass
+            # This sets theturtle to be ready for a new picture. It also
+            # sets the sequence back to empty. It is necessary for the 
+            # graphicsCommands sequence to be in the object. Because
+            # otherwise the statemntÑ graphicsCommands = PyList()
+            # would make this variable a local one in the newWindow method.
+            # If it were local, it would not be set anymore once the newwindow method returned
+
+            theTurtle.clear()
+            theTurtle.penup()
+            theTurtle.goto(0,0)
+            theTurtle.pendown()
+            screen.update()
+            screen.listen()
+            self.graphicsCommands = PyList()
+        
+        fileMenu.add_command(label="New", command=newWindow)
 
 def main():
     filename = input("Please enter drawing filename: ")
