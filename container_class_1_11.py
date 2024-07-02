@@ -170,7 +170,29 @@ class DrawingApplication(tkinter.Frame):
                 screen.update()
 
             fileMenu.add_command(label="Load...", command=loadFile)
-                
+
+            def addToFile():
+                filename = tkinter.filedialog.askopenfilename(title="Select a Graphics File")
+
+                theTurtle.penup()
+                theTurtle.goto(0, 0)
+                theTurtle.pendown()
+                theTurtle.pencolor("#000000")
+                theTurtle.fillcolor("#000000")
+                cmd = PenUpCommand()
+                self.graphicsCommands.append(cmd)
+                cmd = GoToCommand(0, 0, 1, "#000000")
+                self.graphicsCommands.append(cmd)
+                cmd = PenDownCommand()
+                self.graphicsCommands.append(cmd)
+                screen.update()
+                parse(filename)
+
+                for cmd in self.graphicsCommands:
+                    cmd.draw(theTurtle)
+                    screen.update()
+
+            fileMenu.add_command(label="Load into...", command=addToFile)
 
 
 def main():
