@@ -258,6 +258,15 @@ class DrawingApplication(tkinter.Frame):
             radiusSize.set(str(10))
             radiusEntry.pack()
 
+            # A button widget calls an event handler when pressed. The circleHandler function below
+            # is the event handler when the Draw Circle button is pressed
+            def circleHandler():
+                cmd = CircleCommand(floar(radiusSize.get()), float(widthSize.get()), penColor.get())
+                cmd.draw(theTurtle)
+                self.graphicsCommands.append(cmd)
+
+                screen.update()
+                screen.listen()
 
 
 def main():
