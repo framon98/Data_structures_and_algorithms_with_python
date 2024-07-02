@@ -261,10 +261,15 @@ class DrawingApplication(tkinter.Frame):
             # A button widget calls an event handler when pressed. The circleHandler function below
             # is the event handler when the Draw Circle button is pressed
             def circleHandler():
-                cmd = CircleCommand(floar(radiusSize.get()), float(widthSize.get()), penColor.get())
+
+                # When drawing a command is creted and then the command is drawn by calling the draw
+                # method. Adding the commadn to the graphics commasn sequence means the application will remember
+                cmd = CircleCommand(float(radiusSize.get()), float(widthSize.get()), penColor.get())
                 cmd.draw(theTurtle)
                 self.graphicsCommands.append(cmd)
 
+                # This lines update the screen and puts focus back on the canvas. This is necessary
+                # because pressing "u" to undo the screen must have focus to receive the keypress
                 screen.update()
                 screen.listen()
 
