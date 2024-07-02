@@ -215,7 +215,33 @@ class DrawingApplication(tkinter.Frame):
             fileMenu.add_command(label="Exit", command=self.master.quit)
 
             bar.add_cascade(label="File", menu=fileMenu)
-            
+
+            # This helps show the newly created menu bar into the root window
+            self.master.config(menu=bar)
+
+            # Adding here some widgets like the drawing panel
+            canvas = tkinter.Canvas(self, width=600, height=600)
+            canvas.pack()
+
+            # We create rawturtle to allow it to draw on screen, we instance the turtle in the canvas
+            theTurtle = turtle.RawTurtle(canvas)
+
+            # We make the shape of the turtle a circle
+            theTurtle.shape("circle")
+            screen = theTurtle.getscreen()
+
+            # The next line helps not update the screen unless screen.update is called
+            # this prevent the program from crashing when using the draghandler
+            screen.tracer()
+
+            # Here we are creating the right side of the window for the buttons, labels and boxes. 
+            # This makes the fram fill the right side completely where it is available.
+            sideBar = tkinter.Frame(self, padx=5, pady=5)
+            sideBar.pack(side=tkinter.RIGHT, fill=tkinter.BOTH)
+
+            # This label widget, when using pack, it gets placed at the top of the sidebar
+            pointLabel = tkinter.Label(sideBar, text="Width")
+            pointLabel.pack()
 
 
 def main():
