@@ -1,4 +1,5 @@
 import turtle
+import tkinter
 
 class GoToCommand:
     def __init__(self, x, y, width = 1, color = "black"):
@@ -63,8 +64,34 @@ class PyList:
         for c_item in self.items:
             yield c_item
 
-class DrawingApplication
 
+# This clas defines the drawin application. The following line says that 
+# the drawing application class inherits fromt he Frame class. This means
+# that a DrawingApplication is liek a Frame object except for the code
+# written here which redefines/extends the behavior of Frame
+class DrawingApplication(tkinter.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.pack()
+        self.buildWindow()
+        self.graphicsCommands = PyList()
+
+    # This method is called to create all the widgets, place them in the GUI,
+        # and define the event handle for the application
+    def buildWindow(self):
+
+        # The master is the root window. The title is set below
+        self.master.title("Draw")
+
+        # Here is how to create a menu bar. the tearoff = 0 means that menus
+        # can't be separated from the window which is a feature of tkinter
+        bar = tkinter.Menu(self.master)
+        fileMenu = tkinter.Menu(bar, tearoff=0)
+
+        # This code is called by the New menu item below when it is selected.
+        # The same aplies for the loadFile, addtofile, and savefile below. 
+        # The exit menu item below callsquit on the master or root window
+        def newWindow():
 
 
 def main():
