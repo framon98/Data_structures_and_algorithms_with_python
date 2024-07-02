@@ -143,7 +143,34 @@ class DrawingApplication(tkinter.Frame):
                     cmd = EndFillCommand()
 
                 elif command == "PenUp":
-                    cmd = 
+                    cmd = PenUpCommand()
+
+                elif command == "PenDown":
+                    cmd = PenDownCommand()
+
+                else: 
+                    raise RuntimeError("Unknown Command: " +  command)
+
+            def loadFile():
+                filename = tkinter.filedialog.askopenfilename(title="Select a Graphics File")
+
+                newWindow()
+
+                # This re initializes the sequence for the new picture
+                self.graphicsCommands = PyList()
+
+                # calling parse will read the rgaphics commans from the file
+                parse(filename)
+
+                for cmd in self.graphicsCommands:
+                    cmd.draw(theTurtle)
+
+                # This line is necessary to update the window after the picture
+                # is drawn
+                screen.update()
+
+            fileMenu.add_command(label="Load...", command=loadFile)
+                
 
 
 def main():
