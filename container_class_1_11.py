@@ -1,5 +1,6 @@
 import turtle
 import tkinter
+import xml
 
 class GoToCommand:
     def __init__(self, x, y, width = 1, color = "black"):
@@ -108,6 +109,23 @@ class DrawingApplication(tkinter.Frame):
             self.graphicsCommands = PyList()
         
         fileMenu.add_command(label="New", command=newWindow)
+
+        # The parse function adds the contents of an XMl file to the sequence
+        def parse(filename):
+            xmldoc = xml.dom.minidom.parse(filename)
+
+            graphicsCommandsElement = xmldoc.getElementsByTagName("GraphicsCommands")[0]
+
+            graphicsCommands = graphicsCommandsElement.getElementsByTagName("Command")
+
+            for commandElement in graphicsCommands:
+                print(type(commandElement))
+                command = commandElement.firstChild.data.strip()
+                attr = commandElement.attribute
+                if command == "GoTo":
+                    x = float(attr["x"].value)
+                    y = float(attr["y"].value)
+
 
 def main():
     filename = input("Please enter drawing filename: ")
