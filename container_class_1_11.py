@@ -135,6 +135,16 @@ class DrawingApplication(tkinter.Frame):
                     color = attr["color"].value.strip()
                     cmd = CircleCommand(radius, width, color)
 
+                elif command == "BeginFill":
+                    color = attr["color"].value.strip()
+                    cmd = BeginFillCommand(color)
+
+                elif command == "EndFill":
+                    cmd = EndFillCommand()
+
+                elif command == "PenUp":
+                    cmd = 
+
 
 def main():
     filename = input("Please enter drawing filename: ")
