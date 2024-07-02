@@ -273,6 +273,32 @@ class DrawingApplication(tkinter.Frame):
                 screen.update()
                 screen.listen()
 
+            # The button is created and made to fill the sidebar for easy use
+            circleButton = tkinter.Button(sideBar, text="Draw Circle", command=circleHandler)
+            circleButton.pack(fill=tkinter.BOTH)
+
+            # Color Mode 255 allows the use of RGB code when selectin the pen color. This allows
+            # each value to be a number in the range 00-FF for each value. Theselector returns a string
+            # with the selected color and a slice is taken to get the #RRGGBB hexadecimal string
+            screen.colormode(255)
+            penLabel = tkinter.Label(sideBar, text="Pen Color")
+            penLabel.pack()
+            penColor = tkinter.StringVar()
+            penEntry = tkinter.Entry(sideBar, textvariable=penColor)
+            penEntry.pack()
+
+            # This is color black
+            penColor.set("#000000")
+
+            def getPenColor():
+                color = tkinter.colorchooser.askcolor()
+                if color != None:
+                    penColor.set(str(color)[-9:-2])
+
+            penColorButton = tkinter.button(sideBar, text="Pick Pen Color", command=getPenColor)
+            penColorButton.pack(fill=tkinter.BOTH)
+            
+
 
 def main():
     filename = input("Please enter drawing filename: ")
