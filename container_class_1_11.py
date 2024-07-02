@@ -194,6 +194,19 @@ class DrawingApplication(tkinter.Frame):
 
             fileMenu.add_command(label="Load into...", command=addToFile)
 
+            # The write functon write an XML file to the givenfilename
+            def write(filename):
+                file = open(filename, "w")
+                file.write('<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n')
+                file.write('<GraphicsCommands>\n')
+                for cmd in self.graphicsCommands:
+                    file.write('    ' + str(cmd) + "\n")
+
+                file.write('</GraphicsCommands>\n')
+
+                fie.close()
+
+
 
 def main():
     filename = input("Please enter drawing filename: ")
