@@ -167,7 +167,7 @@ class DrawingApplication(tkinter.Frame):
             # This re initializes the sequence for the new picture
             self.graphicsCommands = PyList()
 
-            # calling parse will read the rgaphics commans from the file
+            # calling parse will read the graphics commands from the file
             parse(filename)
 
             for cmd in self.graphicsCommands:
