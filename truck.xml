@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GraphicsCommands>
+    <Command color="black">BeginFill</Command>
+    <Command radius="20.0" width="1.0" color="black">Circle</Command>
+    <Command>EndFill</Command>
+    <Command>PenUp</Command>
+    <Command x ="120.0" y="0.0" width="1.0" color="black">GoTo</Command>
+    <Command>PenDown</Command>
+    <Command color="black">BeginFill</Command>
+    <Command radius="20.0" width="1" color="black">Circle</Command>
+    <Command>EndFill</Command>
+
+</GraphicsCommands>
+
+
+beginfill, black
+circle, 
+endfill
+penup
+goto, 120, 0, 1, black 
+pendown
+beginfill, black
+circle, 20, 1, black
+endfill
+penup
+goto, 150, 40, 1, black
+pendown
+beginfill, yellow
+goto, -30, 40, 1, black
+goto, -30, 70, 1, black
+goto, 60, 70, 1, black
+goto, 60, 100, 1, black
+goto, 90, 100, 1, black
+goto, 115, 70, 1, black
+goto, 150, 70, 1, black
+goto, 150, 40, 1, black
+endfill
