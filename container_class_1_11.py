@@ -297,7 +297,24 @@ class DrawingApplication(tkinter.Frame):
 
             penColorButton = tkinter.button(sideBar, text="Pick Pen Color", command=getPenColor)
             penColorButton.pack(fill=tkinter.BOTH)
+
+            fillLabel = tkinter.Label(sideBar, text="Fill Color")
+            fillLabel.pack()
+            fillColor = tkinter.StringVar()
+            fillEntry = tkinter.Entry(sideBar, textvariable=fillColor)
+            fillColor.set("#000000")
+
+            def getFillColor():
+                color = tkinter.colorchooser.askcolor()
+                if color != None:
+                    fillColor.set(str(color)[-9:-2])
             
+            fillColorButton = tkinter.Button(sideBar, text="Pick Fill Color", command=getFillColor)
+            fillColorButton.pack(fill=tkinter.BOTH)
+            
+
+            def begin_FillHandler():
+                cmd = BeginFillCommand(fillColor.get())
 
 
 def main():
