@@ -16,6 +16,10 @@ class GoToCommand:
         turtle.pencolor(self.color)
         turtle.goto(self.x, self.y)
 
+    def __str__(self):
+        return '<Command x="' + str(self.x) + '" y="' + str(self.y) + '" width="' + \
+                str(self.width) + '" color="' + self.color + '">GoTo</Command>'
+
 class CircleCommand:
     def __init__(self, radius, width = 1, color = "black"):
         self.radius = radius
@@ -123,7 +127,7 @@ class DrawingApplication(tkinter.Frame):
             for commandElement in graphicsCommands:
                 print(type(commandElement))
                 command = commandElement.firstChild.data.strip()
-                attr = commandElement.attribute
+                attr = commandElement.attributes
                 if command == "GoTo":
                     x = float(attr["x"].value)
                     y = float(attr["y"].value)
@@ -152,6 +156,8 @@ class DrawingApplication(tkinter.Frame):
 
                 else: 
                     raise RuntimeError("Unknown Command: " +  command)
+                
+                self.append(cmd)
 
         def loadFile():
             filename = tkinter.filedialog.askopenfilename(title="Select a Graphics File")
