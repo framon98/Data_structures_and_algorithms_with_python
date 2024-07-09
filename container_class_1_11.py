@@ -348,7 +348,45 @@ class DrawingApplication(tkinter.Frame):
 
             penDownButton = tkinter.Button(sideBar, tezt="Pen Down", command=penDownHandler)
             penDownButton.pack(fill=tkinter.BOTH)
-            
+
+            # This is a handler for a click event, meaning this tell the program what to do if a mouse clicks
+            def clickHandler(x, y):
+                # When a mouse clicks, get the widthzie entry and set the width of the pen to that.
+                # The float method is needed due to the entry being a string
+                cmd = GoToCommand(x, y, float(widthSize.get()), penColor.get())
+                cmd.draw(theTurtle)
+                self.graphicsCommands.append(cmd)
+                screen.update()
+                screen.listen()
+
+            # This method ties the click hanlder to the mouse click
+            screen.onclick(clickHandler)
+
+            # This methos handler the dragging of the pen across the screen
+            def dragHandler(x, y):
+                cmd = GoToCommand(x, y,float(widthSize.get()), penColor.get())
+                cmd.draw(theTurtle)
+                self.graphicsCommands.append(cmd)
+                screen.update()
+                screen.listen()
+
+            theTurtle.ondrag(dragHandler)
+
+            #This removes the last command from the list and redraws the image
+            def undoHandler():
+                if len(self.graphicsCommands) > 0:
+                    self.graphicsCommands.removeLast()
+                    theTurtle.clear()
+                    theTurtle.penup()
+                    theTurtle.goto(0, 0)
+                    theTurtle.pendown()
+                    for cmd in self.grapchisCommands:
+                        cmd.draw(theTurtle)
+                    screen.update()
+                    screen.listen()
+
+            screen.onkeypress(undoHandler, "u")
+            screen.listen()
 
 
 def main():
