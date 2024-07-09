@@ -1,6 +1,8 @@
 import turtle
 import tkinter
-import xml
+import tkinter.filedialog
+import tkinter.colorchooser
+import xml.dom.minidom
 
 class GoToCommand:
     def __init__(self, x, y, width = 1, color = "black"):
@@ -207,7 +209,7 @@ class DrawingApplication(tkinter.Frame):
             file.close()
         
         def saveFile():
-            filename = tkinter.filedialog.asksaveasfilename(title="Save Pciture As...")
+            filename = tkinter.filedialog.asksaveasfilename(title="Save Picture As...")
             write(filename)
 
         fileMenu.add_command(label="Save As...", command=saveFile)
