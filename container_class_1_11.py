@@ -313,8 +313,17 @@ class DrawingApplication(tkinter.Frame):
             fillColorButton.pack(fill=tkinter.BOTH)
             
 
-            def begin_FillHandler():
+            def beginFillHandler():
                 cmd = BeginFillCommand(fillColor.get())
+
+            beginFillButton = tkinter.Button(sideBar, text="Begin Fill", command=beginFillHandler)
+            beginFillButton.pack(fill=tkinter.BOTH)
+
+            def endFillHandler():
+                cmd = EndFillCommand()
+                cmd.draw(theTurtle)
+                self.graphicsCommands.append(cmd)
+                
 
 
 def main():
