@@ -323,7 +323,32 @@ class DrawingApplication(tkinter.Frame):
                 cmd = EndFillCommand()
                 cmd.draw(theTurtle)
                 self.graphicsCommands.append(cmd)
-                
+
+            endFillButton = tkinter.Button(sideBar, text="End Fill", command=endFillHandler)
+            endFillButton.pack(tkinter.BOTH)
+
+            penLabel = tkinter.Label(sideBar, tezt="Pen is Down")
+            penLabel.pack()
+
+            def penUpHandler():
+                cmd = PenUpCommand()
+                cmd.draw(theTurtle)
+
+                penLabel.configure(text="Pen is Up")
+                self.graphicsCommands.append(cmd)
+
+            penUpButton = tkinter.Button(sideBar, tezt="Pen Up", command=penUpHandler)
+            penUpButton.pack(fill=tkinter.BOTH)
+
+            def penDownHandler():
+                cmd = penDownHandler()
+                cmd.draw(theTurtle)
+                penLabel.configure(text="Pen is Down")
+                self.graphicsCommands.append(cmd)
+
+            penDownButton = tkinter.Button(sideBar, tezt="Pen Down", command=penDownHandler)
+            penDownButton.pack(fill=tkinter.BOTH)
+            
 
 
 def main():
