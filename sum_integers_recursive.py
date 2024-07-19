@@ -4,8 +4,8 @@ import time
 def recSumFirstN(n):
     if n ==0:
         return 0
-    else:
-        return recSumFirstN(n-1) + n
+
+    return recSumFirstN(n-1) + n
     
 def main():
     x = int(input("Please enter a non-negative integer: "))
