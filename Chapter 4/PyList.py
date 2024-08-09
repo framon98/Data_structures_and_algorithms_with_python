@@ -36,3 +36,26 @@ class PyList:
             result.append(other.items[idxi])
 
         return result
+
+    #This method is hidden since it starts with two underscores. 
+    # It can only be seen to the class to use
+    def __makeroom(self):
+        """
+        Increase siez by 1/4 to make room
+        Add one in case for some reason self.size is 0
+        """
+
+        newlen = (self.size // 4) + self.size + 1
+        newlst = [None] * newlen
+        for idxi in range(self.numItems):
+            newlst[idxi] = self.items[idxi]
+
+        self.items = newlst
+        self.size = newlen
+
+    def append(self, item):
+        if self.numItems == self.size:
+            self.__makeroom()
+
+        self.items[self.numItems] = item
+        self.numItems += 1
