@@ -65,10 +65,34 @@ class PyList:
             self.__makeroom()
 
         if idx < self.numItems:
-            for idxj in range(self.numItems-1, idx-1, -1):
-                self.items[idxj+1] = self.items[idxj]
+            for idxj in range(self.numItems - 1, idx - 1, -1):
+                self.items[idxj + 1] = self.items[idxj]
             
             self.items[idx] = element
             self.numItems += 1
         else:
             self.append(element)
+
+    def __delitem__(self, index):
+        for idxi in range(index, self.numItems - 1):
+            self.items[idxi] = self.items[idxi + 1]
+
+        self.numItems -= 1
+
+    def __eq__(self, other):
+        if type(other) != type(self):
+            return False
+
+        if self.numItems != other.numItems:
+            return False
+        
+        for idxi in range(self.numItems):
+            if self.items[idxi] != other.items[idxi]:
+                return False
+
+        return True
+    
+    def __iter__(self):
+        for idxi in range(self.numItems):
+            yield self.items[idxi]
+
