@@ -25,3 +25,14 @@ class PyList:
             return
 
         raise IndexError("PyList assignment index out of range")
+
+    def __add__(self, other):
+        result = PyList(size=self.numItems + other.numItems)
+
+        for idxi in range(self.numItems):
+            result.append(self.items[idxi])
+
+        for idxi in range(other.numItems):
+            result.append(other.items[idxi])
+
+        return result
