@@ -59,3 +59,16 @@ class PyList:
 
         self.items[self.numItems] = item
         self.numItems += 1
+
+    def insert(self, idx, element):
+        if self.numItems == self.size:
+            self.__makeroom()
+
+        if idx < self.numItems:
+            for idxj in range(self.numItems-1, idx-1, -1):
+                self.items[idxj+1] = self.items[idxj]
+            
+            self.items[idx] = element
+            self.numItems += 1
+        else:
+            self.append(element)
