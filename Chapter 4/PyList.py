@@ -115,3 +115,12 @@ class PyList:
 
         s = s + "]"
         return s
+    
+    def __repr__(self):
+        s = "PyList(["
+        for idx in range(self.numItems):
+            s = s + repr(self.items[idx])
+            if idx < self.numItems - 1:
+                s = s + ", "
+        s = s + "])"
+        return s
