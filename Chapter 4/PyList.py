@@ -96,3 +96,22 @@ class PyList:
         for idxi in range(self.numItems):
             yield self.items[idxi]
 
+    def __len__(self):
+        return self.numItems
+
+    def __contains__(self, item):
+        for idx in range(self.numItems):
+            if self.items[idx] == item:
+                return True
+            
+        return False
+    
+    def __str__(self):
+        s = "["
+        for idx in range(self.numItems):
+            s = s + repr(self.items[idx])
+            if idx < self.numItems -1:
+                s = s + ", "
+
+        s = s + "]"
+        return s
